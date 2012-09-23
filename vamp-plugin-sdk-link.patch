@@ -1,0 +1,12 @@
+diff -aurN vamp-plugin-sdk-2.4.orig/Makefile.in vamp-plugin-sdk-2.4/Makefile.in
+--- vamp-plugin-sdk-2.4.orig/Makefile.in	2012-09-23 12:15:33.060344791 +0200
++++ vamp-plugin-sdk-2.4/Makefile.in	2012-09-23 12:16:58.491497763 +0200
+@@ -237,7 +237,7 @@
+ 		$(CXX) $(LDFLAGS) $(SDK_DYNAMIC_LDFLAGS) -o $@ $(SDK_OBJECTS)
+ 
+ $(HOSTSDK_DYNAMIC):	$(HOSTSDK_OBJECTS) $(API_HEADERS) $(HOSTSDK_HEADERS)
+-		$(CXX) $(LDFLAGS) $(HOSTSDK_DYNAMIC_LDFLAGS) -o $@ $(HOSTSDK_OBJECTS)
++		$(CXX) $(LDFLAGS) $(HOSTSDK_DYNAMIC_LDFLAGS) -o $@ $(HOSTSDK_OBJECTS) -ldl
+ 
+ $(PLUGIN_TARGET):	$(PLUGIN_OBJECTS) $(SDK_STATIC) $(PLUGIN_HEADERS)
+ 		$(CXX) $(LDFLAGS) $(PLUGIN_LDFLAGS) -o $@ $(PLUGIN_OBJECTS) $(PLUGIN_LIBS)

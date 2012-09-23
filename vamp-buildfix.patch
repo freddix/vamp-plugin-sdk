@@ -1,0 +1,33 @@
+diff -aurN vamp-plugin-sdk-2.1.orig/examples/FixedTempoEstimator.cpp vamp-plugin-sdk-2.1/examples/FixedTempoEstimator.cpp
+--- vamp-plugin-sdk-2.1.orig/examples/FixedTempoEstimator.cpp	2010-02-16 21:39:28.000000000 +0100
++++ vamp-plugin-sdk-2.1/examples/FixedTempoEstimator.cpp	2010-02-16 21:46:06.000000000 +0100
+@@ -44,7 +44,7 @@
+ using Vamp::RealTime;
+ 
+ #include <cmath>
+-
++#include <cstdio>
+ 
+ class FixedTempoEstimator::D
+ // this class just avoids us having to declare any data members in the header
+diff -aurN vamp-plugin-sdk-2.1.orig/Makefile.in vamp-plugin-sdk-2.1/Makefile.in
+--- vamp-plugin-sdk-2.1.orig/Makefile.in	2010-02-16 21:39:28.000000000 +0100
++++ vamp-plugin-sdk-2.1/Makefile.in	2010-02-16 21:41:07.000000000 +0100
+@@ -47,7 +47,7 @@
+ 
+ # Libraries required for the plugins.
+ #
+-PLUGIN_LIBS	= ./libvamp-sdk.a
++PLUGIN_LIBS	= ./libvamp-sdk.a -lstdc++
+ 
+ # File extension for a dynamically loadable object
+ #
+@@ -230,7 +230,7 @@
+ 		$(CXX) $(LDFLAGS) $(SDK_DYNAMIC_LDFLAGS) -o $@ $(SDK_OBJECTS)
+ 
+ $(HOSTSDK_DYNAMIC):	$(HOSTSDK_OBJECTS) $(API_HEADERS) $(HOSTSDK_HEADERS)
+-		$(CXX) $(LDFLAGS) $(HOSTSDK_DYNAMIC_LDFLAGS) -o $@ $(HOSTSDK_OBJECTS)
++		$(CXX) $(LDFLAGS) $(HOSTSDK_DYNAMIC_LDFLAGS) -o $@ $(HOSTSDK_OBJECTS) -ldl
+ 
+ $(PLUGIN_TARGET):	$(PLUGIN_OBJECTS) $(SDK_STATIC) $(PLUGIN_HEADERS)
+ 		$(CXX) $(LDFLAGS) $(PLUGIN_LDFLAGS) -o $@ $(PLUGIN_OBJECTS) $(PLUGIN_LIBS)
