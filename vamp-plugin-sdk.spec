@@ -1,14 +1,16 @@
+# based on PLD Linux spec git://git.pld-linux.org/packages/.git
 Summary:	API for audio analysis and feature extraction plugins
 Name:		vamp-plugin-sdk
-Version:	2.4
+Version:	2.5
 Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://code.soundsoftware.ac.uk/attachments/download/517/%{name}-%{version}.tar.gz
-# Source0-md5:	4bd75ca4515c141cd8776bdb59066261
+Source0:	http://code.soundsoftware.ac.uk/attachments/download/690/%{name}-%{version}.tar.gz
+# Source0-md5:	199872997f74951f6769b982bf0d0646
 Patch:		%{name}-link.patch
 URL:		http://www.vamp-plugins.org/
 BuildRequires:	libstdc++-devel
+BuildRequires:	libsndfile-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,6 +55,8 @@ rm -rf $RPM_BUILD_ROOT
 	INSTALL_PLUGINS="%{vampplugindir}"	\
 	INSTALL_SDK_LIBS="%{_libdir}"
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 install -d $RPM_BUILD_ROOT%{_libdir}/vamp
 install examples/*.so $RPM_BUILD_ROOT%{_libdir}/vamp
 
@@ -76,8 +80,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libvamp-hostsdk.so
 %attr(755,root,root) %{_libdir}/libvamp-sdk.so
-%{_libdir}/libvamp-hostsdk.la
-%{_libdir}/libvamp-sdk.la
 %{_includedir}/vamp
 %{_includedir}/vamp-sdk
 %{_includedir}/vamp-hostsdk
